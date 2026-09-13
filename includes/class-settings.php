@@ -9,10 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class RepoPress_Settings {
+class RepoBridgeForge_Settings {
 
-	const OPTION_SETTINGS = 'repopress_settings';
-	const OPTION_TOKEN    = 'repopress_token';
+	const OPTION_SETTINGS = 'repobridgeforge_settings';
+	const OPTION_TOKEN    = 'repobridgeforge_token';
 
 	/**
 	 * Default configuration.
@@ -27,7 +27,7 @@ class RepoPress_Settings {
 			'path'            => '',        // Sub-folder in the repo, empty means repo root.
 			'post_type'       => 'post',
 			'default_status'  => 'draft',   // Status used when front matter omits it.
-			'frequency'       => 'manual',  // manual|repopress_15min|hourly|twicedaily|daily.
+			'frequency'       => 'manual',  // manual|repobridgeforge_15min|hourly|twicedaily|daily.
 			'delete_behavior' => 'ignore',  // ignore|trash — what to do when a file disappears.
 		);
 	}
@@ -98,7 +98,7 @@ class RepoPress_Settings {
 	 * Encryption at rest (obfuscation using site salts).
 	 * ---------------------------------------------------------------------- */
 
-	const CIPHER_PREFIX = 'repopress1:';
+	const CIPHER_PREFIX = 'repobridgeforge1:';
 
 	private function encrypt( $plain ) {
 		if ( ! function_exists( 'openssl_encrypt' ) ) {

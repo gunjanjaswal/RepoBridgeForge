@@ -13,7 +13,7 @@
 #
 #
 
-class Parsedown
+class RepoBridgeForge_Parsedown
 {
     # ~
 

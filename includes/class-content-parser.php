@@ -13,12 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class RepoPress_Content_Parser {
+class RepoBridgeForge_Content_Parser {
 
-	/** @var RepoPress_Settings */
+	/** @var RepoBridgeForge_Settings */
 	private $settings;
 
-	public function __construct( RepoPress_Settings $settings ) {
+	public function __construct( RepoBridgeForge_Settings $settings ) {
 		$this->settings = $settings;
 	}
 
@@ -174,8 +174,8 @@ class RepoPress_Content_Parser {
 	private function markdown_to_html( $markdown ) {
 		$markdown = ltrim( (string) $markdown, "\n" );
 
-		if ( class_exists( '\\Parsedown' ) ) {
-			$parser = new \Parsedown();
+		if ( class_exists( 'RepoBridgeForge_Parsedown' ) ) {
+			$parser = new RepoBridgeForge_Parsedown();
 			if ( method_exists( $parser, 'setSafeMode' ) ) {
 				$parser->setSafeMode( true );
 			}
@@ -191,6 +191,6 @@ class RepoPress_Content_Parser {
 		 * @param string $html
 		 * @param string $markdown
 		 */
-		return apply_filters( 'repopress_post_content_html', $html, $markdown );
+		return apply_filters( 'repobridgeforge_post_content_html', $html, $markdown );
 	}
 }

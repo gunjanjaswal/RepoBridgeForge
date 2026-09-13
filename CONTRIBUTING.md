@@ -1,4 +1,4 @@
-# Contributing to RepoPress
+# Contributing to Repo Bridge Forge
 
 Thanks for taking the time to help. This document covers local setup, coding
 standards, how versioning works, and how a release gets published to the
@@ -9,10 +9,10 @@ WordPress plugin directory.
 Clone into a WordPress install's plugins folder:
 
 ```bash
-git clone https://github.com/gunjanjaswal/RepoPress.git wp-content/plugins/repopress
+git clone https://github.com/gunjanjaswal/RepoBridgeForge.git wp-content/plugins/repobridgeforge
 ```
 
-RepoPress ships with a bundled copy of Parsedown in `includes/lib/`, so it runs
+Repo Bridge Forge ships with a bundled copy of Parsedown in `includes/lib/`, so it runs
 without any build step. If you would rather manage it with Composer:
 
 ```bash
@@ -25,8 +25,8 @@ file is loaded.
 ## Project layout
 
 ```
-repopress/
-├── repopress.php              Main file: header, constants, bootstrap
+repobridgeforge/
+├── repobridgeforge.php              Main file: header, constants, bootstrap
 ├── uninstall.php              Removes options on uninstall (keeps your posts)
 ├── readme.txt                 WordPress.org readme
 ├── includes/
@@ -62,7 +62,7 @@ phpcs --standard=WordPress .
 
 ## Versioning
 
-RepoPress uses [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`.
+Repo Bridge Forge uses [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`.
 
 - **PATCH** for backward-compatible fixes.
 - **MINOR** for backward-compatible features.
@@ -72,8 +72,8 @@ The version number lives in four places and they must match on every release:
 
 | Location | Field |
 | --- | --- |
-| `repopress.php` | `Version:` header |
-| `repopress.php` | `REPOPRESS_VERSION` constant |
+| `repobridgeforge.php` | `Version:` header |
+| `repobridgeforge.php` | `REPOBRIDGEFORGE_VERSION` constant |
 | `readme.txt` | `Stable tag:` |
 | `CHANGELOG.md` | The new version heading |
 
@@ -115,5 +115,5 @@ Parsedown, are always included.
 ## Reporting issues
 
 Open an issue at
-[github.com/gunjanjaswal/RepoPress/issues](https://github.com/gunjanjaswal/RepoPress/issues).
+[github.com/gunjanjaswal/RepoBridgeForge/issues](https://github.com/gunjanjaswal/RepoBridgeForge/issues).
 A sample Markdown file and your plugin settings make bugs much faster to track down.

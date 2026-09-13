@@ -9,36 +9,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class RepoPress_Admin_Page {
+class RepoBridgeForge_Admin_Page {
 
-	const MENU_SLUG      = 'repopress';
+	const MENU_SLUG      = 'repobridgeforge';
 	const CAP            = 'manage_options';
-	const TOKEN_UNCHANGED = '__repopress_token_unchanged__';
+	const TOKEN_UNCHANGED = '__repobridgeforge_token_unchanged__';
 
-	/** @var RepoPress_Settings */
+	/** @var RepoBridgeForge_Settings */
 	private $settings;
 
-	/** @var RepoPress_Logger */
+	/** @var RepoBridgeForge_Logger */
 	private $logger;
 
-	public function __construct( RepoPress_Settings $settings, RepoPress_Logger $logger ) {
+	public function __construct( RepoBridgeForge_Settings $settings, RepoBridgeForge_Logger $logger ) {
 		$this->settings = $settings;
 		$this->logger   = $logger;
 	}
 
 	public function init() {
 		add_action( 'admin_menu', array( $this, 'add_menu' ) );
-		add_action( 'admin_post_repopress_save', array( $this, 'handle_save' ) );
-		add_action( 'admin_post_repopress_sync_now', array( $this, 'handle_sync_now' ) );
-		add_action( 'admin_post_repopress_test', array( $this, 'handle_test' ) );
-		add_filter( 'plugin_action_links_' . REPOPRESS_PLUGIN_BASENAME, array( $this, 'action_links' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+		add_action( 'admin_post_repobridgeforge_save', array( $this, 'handle_save' ) );
+		add_action( 'admin_post_repobridgeforge_sync_now', array( $this, 'handle_sync_now' ) );
+		add_action( 'admin_post_repobridgeforge_test', array( $this, 'handle_test' ) );
+		add_filter( 'plugin_action_links_' . REPOBRIDGEFORGE_PLUGIN_BASENAME, array( $this, 'action_links' ) );
 		add_filter( 'plugin_row_meta', array( $this, 'row_meta' ), 10, 2 );
 	}
 
 	public function add_menu() {
 		add_menu_page(
-			__( 'RepoPress', 'repopress' ),
-			__( 'RepoPress', 'repopress' ),
+			__( 'Repo Bridge Forge', 'repobridgeforge' ),
+			__( 'Repo Bridge Forge', 'repobridgeforge' ),
 			self::CAP,
 			self::MENU_SLUG,
 			array( $this, 'render' ),
@@ -47,9 +48,26 @@ class RepoPress_Admin_Page {
 		);
 	}
 
+	/**
+	 * Enqueue the settings screen stylesheet, only on this plugin's page.
+	 *
+	 * @param string $hook Current admin page hook suffix.
+	 */
+	public function enqueue_assets( $hook ) {
+		if ( 'toplevel_page_' . self::MENU_SLUG !== $hook ) {
+			return;
+		}
+		wp_enqueue_style(
+			'repobridgeforge-admin',
+			REPOBRIDGEFORGE_PLUGIN_URL . 'admin/css/admin.css',
+			array(),
+			REPOBRIDGEFORGE_VERSION
+		);
+	}
+
 	public function action_links( $links ) {
 		$url  = admin_url( 'admin.php?page=' . self::MENU_SLUG );
-		$link = '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'repopress' ) . '</a>';
+		$link = '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'repobridgeforge' ) . '</a>';
 		array_unshift( $links, $link );
 		return $links;
 	}
@@ -62,11 +80,11 @@ class RepoPress_Admin_Page {
 	 * @return string[]
 	 */
 	public function row_meta( $links, $file ) {
-		if ( REPOPRESS_PLUGIN_BASENAME !== $file ) {
+		if ( REPOBRIDGEFORGE_PLUGIN_BASENAME !== $file ) {
 			return $links;
 		}
-		$links[] = '<a href="https://ko-fi.com/gunjanjaswal" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Support on Ko-fi', 'repopress' ) . '</a>';
-		$links[] = '<a href="https://www.gunjanjaswal.me" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Author', 'repopress' ) . '</a>';
+		$links[] = '<a href="https://ko-fi.com/gunjanjaswal" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Support on Ko-fi', 'repobridgeforge' ) . '</a>';
+		$links[] = '<a href="https://www.gunjanjaswal.me" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Author', 'repobridgeforge' ) . '</a>';
 		return $links;
 	}
 
@@ -76,7 +94,7 @@ class RepoPress_Admin_Page {
 		}
 		$settings = $this->settings;
 		$logger   = $this->logger;
-		require REPOPRESS_PLUGIN_DIR . 'admin/views/settings.php';
+		require REPOBRIDGEFORGE_PLUGIN_DIR . 'admin/views/settings.php';
 	}
 
 	/* -------------------------------------------------------------------------
@@ -86,9 +104,9 @@ class RepoPress_Admin_Page {
 	public function handle_save() {
 		// Nonce and capability are verified inline here so the input reads below are provably guarded.
 		if ( ! current_user_can( self::CAP ) ) {
-			wp_die( esc_html__( 'You are not allowed to do this.', 'repopress' ) );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'repobridgeforge' ) );
 		}
-		check_admin_referer( 'repopress_save' );
+		check_admin_referer( 'repobridgeforge_save' );
 
 		$data = array(
 			'owner'           => isset( $_POST['owner'] ) ? sanitize_text_field( wp_unslash( $_POST['owner'] ) ) : '',
@@ -108,15 +126,15 @@ class RepoPress_Admin_Page {
 			$this->settings->set_token( $token );
 		}
 
-		RepoPress_Plugin::instance()->reschedule();
+		RepoBridgeForge_Plugin::instance()->reschedule();
 
 		$this->redirect_back( 'saved' );
 	}
 
 	public function handle_sync_now() {
-		$this->guard( 'repopress_sync_now' );
+		$this->guard( 'repobridgeforge_sync_now' );
 
-		$engine = new RepoPress_Sync_Engine( $this->settings, $this->logger );
+		$engine = new RepoBridgeForge_Sync_Engine( $this->settings, $this->logger );
 		$result = $engine->sync();
 
 		if ( is_wp_error( $result ) ) {
@@ -126,10 +144,10 @@ class RepoPress_Admin_Page {
 	}
 
 	public function handle_test() {
-		$this->guard( 'repopress_test' );
+		$this->guard( 'repobridgeforge_test' );
 
 		$config = $this->settings->get_all();
-		$client = new RepoPress_GitHub_Client( $this->settings->get_token(), $config['owner'], $config['repo'] );
+		$client = new RepoBridgeForge_GitHub_Client( $this->settings->get_token(), $config['owner'], $config['repo'] );
 		$result = $client->test_connection();
 
 		if ( is_wp_error( $result ) ) {
@@ -145,7 +163,7 @@ class RepoPress_Admin_Page {
 
 	private function guard( $action ) {
 		if ( ! current_user_can( self::CAP ) ) {
-			wp_die( esc_html__( 'You are not allowed to do this.', 'repopress' ) );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'repobridgeforge' ) );
 		}
 		check_admin_referer( $action );
 	}
@@ -153,10 +171,10 @@ class RepoPress_Admin_Page {
 	private function redirect_back( $notice, $detail = '' ) {
 		$args = array(
 			'page'        => self::MENU_SLUG,
-			'repopress_notice' => $notice,
+			'repobridgeforge_notice' => $notice,
 		);
 		if ( '' !== $detail ) {
-			$args['repopress_detail'] = $detail;
+			$args['repobridgeforge_detail'] = $detail;
 		}
 		wp_safe_redirect( add_query_arg( $args, admin_url( 'admin.php' ) ) );
 		exit;
