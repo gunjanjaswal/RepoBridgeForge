@@ -9,20 +9,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class RepoPress_Sync_Engine {
+class RepoBridgeForge_Sync_Engine {
 
-	const LOCK_TRANSIENT = 'repopress_sync_lock';
-	const META_PATH      = '_repopress_repo_path';
-	const META_SHA       = '_repopress_blob_sha';
-	const META_SYNCED    = '_repopress_synced_at';
+	const LOCK_TRANSIENT = 'repobridgeforge_sync_lock';
+	const META_PATH      = '_repobridgeforge_repo_path';
+	const META_SHA       = '_repobridgeforge_blob_sha';
+	const META_SYNCED    = '_repobridgeforge_synced_at';
 
-	/** @var RepoPress_Settings */
+	/** @var RepoBridgeForge_Settings */
 	private $settings;
 
-	/** @var RepoPress_Logger */
+	/** @var RepoBridgeForge_Logger */
 	private $logger;
 
-	public function __construct( RepoPress_Settings $settings, RepoPress_Logger $logger ) {
+	public function __construct( RepoBridgeForge_Settings $settings, RepoBridgeForge_Logger $logger ) {
 		$this->settings = $settings;
 		$this->logger   = $logger;
 	}
@@ -34,11 +34,11 @@ class RepoPress_Sync_Engine {
 	 */
 	public function sync() {
 		if ( ! $this->settings->is_configured() ) {
-			return new WP_Error( 'repopress_not_configured', __( 'Connect a repository and token first.', 'repopress' ) );
+			return new WP_Error( 'repobridgeforge_not_configured', __( 'Connect a repository and token first.', 'repobridgeforge' ) );
 		}
 
 		if ( get_transient( self::LOCK_TRANSIENT ) ) {
-			return new WP_Error( 'repopress_locked', __( 'A sync is already running.', 'repopress' ) );
+			return new WP_Error( 'repobridgeforge_locked', __( 'A sync is already running.', 'repobridgeforge' ) );
 		}
 		set_transient( self::LOCK_TRANSIENT, time(), 5 * MINUTE_IN_SECONDS );
 
@@ -50,8 +50,8 @@ class RepoPress_Sync_Engine {
 
 	private function run() {
 		$config = $this->settings->get_all();
-		$client = new RepoPress_GitHub_Client( $this->settings->get_token(), $config['owner'], $config['repo'] );
-		$parser = new RepoPress_Content_Parser( $this->settings );
+		$client = new RepoBridgeForge_GitHub_Client( $this->settings->get_token(), $config['owner'], $config['repo'] );
+		$parser = new RepoBridgeForge_Content_Parser( $this->settings );
 
 		$tree = $client->get_tree( $config['branch'] );
 		if ( is_wp_error( $tree ) ) {
@@ -59,7 +59,7 @@ class RepoPress_Sync_Engine {
 			return $tree;
 		}
 		if ( $tree['truncated'] ) {
-			$this->logger->log( 'warning', __( 'The repository tree was truncated by GitHub; some files may be skipped. Consider a sub-folder path.', 'repopress' ) );
+			$this->logger->log( 'warning', __( 'The repository tree was truncated by GitHub; some files may be skipped. Consider a sub-folder path.', 'repobridgeforge' ) );
 		}
 
 		$prefix = $this->normalize_prefix( $config['path'] );
@@ -139,7 +139,7 @@ class RepoPress_Sync_Engine {
 			'success',
 			sprintf(
 				/* translators: sync summary counts. */
-				__( 'Sync finished. Created %1$d, updated %2$d, skipped %3$d, removed %4$d, errors %5$d.', 'repopress' ),
+				__( 'Sync finished. Created %1$d, updated %2$d, skipped %3$d, removed %4$d, errors %5$d.', 'repobridgeforge' ),
 				$counts['created'],
 				$counts['updated'],
 				$counts['skipped'],
@@ -148,7 +148,7 @@ class RepoPress_Sync_Engine {
 			)
 		);
 
-		update_option( 'repopress_last_sync', current_time( 'mysql' ), false );
+		update_option( 'repobridgeforge_last_sync', current_time( 'mysql' ), false );
 
 		return $counts;
 	}
@@ -180,10 +180,10 @@ class RepoPress_Sync_Engine {
 			}
 			if ( 'trash' === $behavior ) {
 				wp_trash_post( $post_id );
-				$this->logger->log( 'warning', sprintf( /* translators: repo file path. */ __( 'Trashed post for removed file: %s', 'repopress' ), $path ) );
+				$this->logger->log( 'warning', sprintf( /* translators: repo file path. */ __( 'Trashed post for removed file: %s', 'repobridgeforge' ), $path ) );
 				++$acted;
 			} else {
-				$this->logger->log( 'info', sprintf( /* translators: repo file path. */ __( 'Source file gone, post left untouched: %s', 'repopress' ), $path ) );
+				$this->logger->log( 'info', sprintf( /* translators: repo file path. */ __( 'Source file gone, post left untouched: %s', 'repobridgeforge' ), $path ) );
 			}
 		}
 		return $acted;

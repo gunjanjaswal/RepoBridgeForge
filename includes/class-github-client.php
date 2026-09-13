@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class RepoPress_GitHub_Client {
+class RepoBridgeForge_GitHub_Client {
 
 	const API_BASE = 'https://api.github.com';
 
@@ -95,7 +95,7 @@ class RepoPress_GitHub_Client {
 				return $decoded;
 			}
 		}
-		return new WP_Error( 'repopress_decode', __( 'Could not decode file content.', 'repopress' ) );
+		return new WP_Error( 'repobridgeforge_decode', __( 'Could not decode file content.', 'repobridgeforge' ) );
 	}
 
 	/* -------------------------------------------------------------------------
@@ -109,7 +109,7 @@ class RepoPress_GitHub_Client {
 		$headers = array(
 			'Accept'               => 'application/vnd.github+json',
 			'X-GitHub-Api-Version' => '2022-11-28',
-			'User-Agent'           => 'WP-GitHub-Sync/' . REPOPRESS_VERSION,
+			'User-Agent'           => 'WP-GitHub-Sync/' . REPOBRIDGEFORGE_VERSION,
 		);
 		if ( '' !== $this->token ) {
 			$headers['Authorization'] = 'Bearer ' . $this->token;
@@ -139,12 +139,12 @@ class RepoPress_GitHub_Client {
 	}
 
 	private function error_from_response( $res ) {
-		$message = isset( $res['body']['message'] ) ? $res['body']['message'] : __( 'Unknown error', 'repopress' );
+		$message = isset( $res['body']['message'] ) ? $res['body']['message'] : __( 'Unknown error', 'repobridgeforge' );
 		return new WP_Error(
-			'repopress_api_' . $res['code'],
+			'repobridgeforge_api_' . $res['code'],
 			sprintf(
 				/* translators: 1: HTTP status code, 2: error message returned by GitHub. */
-				__( 'GitHub API error (%1$d): %2$s', 'repopress' ),
+				__( 'GitHub API error (%1$d): %2$s', 'repobridgeforge' ),
 				$res['code'],
 				$message
 			)

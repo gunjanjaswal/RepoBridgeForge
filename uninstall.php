@@ -12,12 +12,12 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-delete_option( 'repopress_settings' );
-delete_option( 'repopress_token' );
-delete_option( 'repopress_log' );
-delete_option( 'repopress_last_sync' );
+delete_option( 'repobridgeforge_settings' );
+delete_option( 'repobridgeforge_token' );
+delete_option( 'repobridgeforge_log' );
+delete_option( 'repobridgeforge_last_sync' );
 
-$repopress_timestamp = wp_next_scheduled( 'repopress_scheduled_sync' );
-if ( $repopress_timestamp ) {
-	wp_unschedule_event( $repopress_timestamp, 'repopress_scheduled_sync' );
+$repobridgeforge_timestamp = wp_next_scheduled( 'repobridgeforge_scheduled_sync' );
+if ( $repobridgeforge_timestamp ) {
+	wp_unschedule_event( $repobridgeforge_timestamp, 'repobridgeforge_scheduled_sync' );
 }

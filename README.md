@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/banner-772x250.png" alt="RepoPress" width="772">
+  <img src="assets/banner-772x250.png" alt="Repo Bridge Forge" width="772">
 </p>
 
-<h1 align="center">RepoPress</h1>
+<h1 align="center">Repo Bridge Forge</h1>
 
 <p align="center">
   <strong>Publish your WordPress content straight from a GitHub repository.</strong><br>
@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/gunjanjaswal/RepoPress/actions/workflows/ci.yml"><img src="https://github.com/gunjanjaswal/RepoPress/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/gunjanjaswal/RepoBridgeForge/actions/workflows/ci.yml"><img src="https://github.com/gunjanjaswal/RepoBridgeForge/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <img src="https://img.shields.io/badge/WordPress-5.8%2B-21759B?logo=wordpress&logoColor=white" alt="WordPress 5.8+">
   <img src="https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php&logoColor=white" alt="PHP 7.4+">
   <img src="https://img.shields.io/badge/License-GPLv2%2B-1E7B34" alt="License GPLv2 or later">
@@ -22,7 +22,7 @@
 
 ## What it does
 
-RepoPress reads Markdown files from a GitHub repository and turns them into WordPress posts. Point it at a repo, a branch, and a folder, and every Markdown file there becomes a post. Edit a file on GitHub, and the matching post updates on the next sync.
+Repo Bridge Forge reads Markdown files from a GitHub repository and turns them into WordPress posts. Point it at a repo, a branch, and a folder, and every Markdown file there becomes a post. Edit a file on GitHub, and the matching post updates on the next sync.
 
 It fits three kinds of people well:
 
@@ -32,7 +32,7 @@ It fits three kinds of people well:
 
 ## Why one direction
 
-Your repository is the source of truth. WordPress is where it gets published. RepoPress only reads from GitHub, it never writes back, so there is nothing to reconcile and no chance of the plugin changing your repo. That decision keeps the whole thing predictable: if the file changed, the post changes; if it did not, nothing happens.
+Your repository is the source of truth. WordPress is where it gets published. Repo Bridge Forge only reads from GitHub, it never writes back, so there is nothing to reconcile and no chance of the plugin changing your repo. That decision keeps the whole thing predictable: if the file changed, the post changes; if it did not, nothing happens.
 
 ## How it works
 
@@ -41,13 +41,13 @@ Your repository is the source of truth. WordPress is where it gets published. Re
             │
             │  read-only, over the GitHub REST API
             ▼
-  RepoPress  ──►  parse front matter  ──►  convert Markdown to HTML
+  Repo Bridge Forge  ──►  parse front matter  ──►  convert Markdown to HTML
             │
             ▼
   WordPress posts  (tracked per file by its Git blob checksum)
 ```
 
-Each file is tracked by its Git blob SHA, stored in post meta. On every run RepoPress compares the current SHA against the last one it saw, so unchanged files are skipped and only real edits trigger an update. No content diffing, no guesswork.
+Each file is tracked by its Git blob SHA, stored in post meta. On every run Repo Bridge Forge compares the current SHA against the last one it saw, so unchanged files are skipped and only real edits trigger an update. No content diffing, no guesswork.
 
 ## A sample file
 
@@ -89,7 +89,7 @@ Your **Markdown** body goes here, including lists, links, and code.
 
 ### From the WordPress plugin directory
 
-1. In your dashboard, go to **Plugins → Add New** and search for **RepoPress**.
+1. In your dashboard, go to **Plugins → Add New** and search for **Repo Bridge Forge**.
 2. Install and activate.
 
 ### Manual
@@ -100,14 +100,14 @@ Your **Markdown** body goes here, including lists, links, and code.
 ### For development
 
 ```bash
-git clone https://github.com/gunjanjaswal/RepoPress.git wp-content/plugins/repopress
+git clone https://github.com/gunjanjaswal/RepoBridgeForge.git wp-content/plugins/repobridgeforge
 ```
 
-RepoPress ships with a bundled Markdown parser, so it runs as-is. If you prefer Composer, `composer install` will use the Composer copy instead.
+Repo Bridge Forge ships with a bundled Markdown parser, so it runs as-is. If you prefer Composer, `composer install` will use the Composer copy instead.
 
 ## Setup
 
-1. Go to **Tools → RepoPress**.
+1. Go to **Tools → Repo Bridge Forge**.
 2. Enter the repository owner, name, branch, and an optional folder path.
 3. Paste a fine-grained personal access token with read-only Contents access to that repository.
 4. Choose the post type, default status, and how often to sync.
@@ -115,7 +115,7 @@ RepoPress ships with a bundled Markdown parser, so it runs as-is. If you prefer 
 
 ### The token
 
-RepoPress needs a [fine-grained personal access token](https://github.com/settings/tokens?type=beta) scoped to the one repository, with **Contents: Read-only**. That is the least access the plugin can work with. The token is stored encrypted in your database.
+Repo Bridge Forge needs a [fine-grained personal access token](https://github.com/settings/tokens?type=beta) scoped to the one repository, with **Contents: Read-only**. That is the least access the plugin can work with. The token is stored encrypted in your database.
 
 ## Configuration
 
@@ -144,7 +144,7 @@ It is stored encrypted at rest using your site's authentication salts, and it ne
 
 ## External services
 
-RepoPress talks to the [GitHub REST API](https://docs.github.com/rest) (`https://api.github.com`) to read the repository you configure. Requests are made only after you save a repository and token, and only to fetch the repository details, its file tree, and the contents of Markdown files. Nothing is sent anywhere else, and the plugin collects no analytics.
+Repo Bridge Forge talks to the [GitHub REST API](https://docs.github.com/rest) (`https://api.github.com`) to read the repository you configure. Requests are made only after you save a repository and token, and only to fetch the repository details, its file tree, and the contents of Markdown files. Nothing is sent anywhere else, and the plugin collects no analytics.
 
 - [GitHub Terms of Service](https://docs.github.com/site-policy/github-terms/github-terms-of-service)
 - [GitHub Privacy Statement](https://docs.github.com/site-policy/privacy-policies/github-privacy-statement)
@@ -168,7 +168,7 @@ find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
 
 ## Contributing
 
-Issues and pull requests are welcome at [github.com/gunjanjaswal/RepoPress](https://github.com/gunjanjaswal/RepoPress). If you are reporting a bug, a sample Markdown file and your settings help a lot.
+Issues and pull requests are welcome at [github.com/gunjanjaswal/RepoBridgeForge](https://github.com/gunjanjaswal/RepoBridgeForge). If you are reporting a bug, a sample Markdown file and your settings help a lot.
 
 ## License
 

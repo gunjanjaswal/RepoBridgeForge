@@ -1,4 +1,4 @@
-=== RepoPress ===
+=== Repo Bridge Forge ===
 Contributors: gunjanjaswal
 Donate link: https://ko-fi.com/gunjanjaswal
 Tags: github, markdown, sync, content, deployment
@@ -13,7 +13,7 @@ Publish WordPress content straight from a GitHub repository. Write Markdown with
 
 == Description ==
 
-RepoPress lets you keep your content in a GitHub repository and have it appear as WordPress posts. Point the plugin at a repo, a branch, and a folder, and every Markdown file there becomes a post. Edit the file in GitHub, and the post updates on your next sync.
+Repo Bridge Forge lets you keep your content in a GitHub repository and have it appear as WordPress posts. Point the plugin at a repo, a branch, and a folder, and every Markdown file there becomes a post. Edit the file in GitHub, and the post updates on your next sync.
 
 It is built for people who like writing in Markdown, want their content under version control, or manage docs and changelogs in a repo and need them mirrored onto a WordPress site.
 
@@ -57,7 +57,7 @@ The plugin does not collect analytics, does not phone home, and stores your toke
 
 == Installation ==
 
-1. Upload the `repopress` folder to `/wp-content/plugins/`, or install the plugin through the WordPress plugins screen.
+1. Upload the `repobridgeforge` folder to `/wp-content/plugins/`, or install the plugin through the WordPress plugins screen.
 2. Activate the plugin.
 3. Go to Tools > GitHub Sync.
 4. Enter the repository owner, name, branch, and optional folder path.
@@ -84,7 +84,7 @@ Content is stored as HTML in the post body, which any theme and the block editor
 
 = Where is development happening? =
 
-Source code and issues live on GitHub at https://github.com/gunjanjaswal/RepoPress.
+Source code and issues live on GitHub at https://github.com/gunjanjaswal/RepoBridgeForge.
 
 == Screenshots ==
 

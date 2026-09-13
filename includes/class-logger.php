@@ -9,9 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class RepoPress_Logger {
+class RepoBridgeForge_Logger {
 
-	const OPTION = 'repopress_log';
+	const OPTION = 'repobridgeforge_log';
 	const MAX_ENTRIES = 100;
 
 	/**

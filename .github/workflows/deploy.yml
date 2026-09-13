@@ -23,12 +23,12 @@ jobs:
         env:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
-          SLUG: repopress
+          SLUG: repobridgeforge
 
       - name: Attach the built zip to the release
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ github.workspace }}/repopress.zip
+          files: ${{ github.workspace }}/repobridgeforge.zip
 
   assets:
     name: Update store assets
@@ -43,4 +43,4 @@ jobs:
         env:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
-          SLUG: repopress
+          SLUG: repobridgeforge

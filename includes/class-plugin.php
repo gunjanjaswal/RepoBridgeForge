@@ -9,17 +9,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class RepoPress_Plugin {
+class RepoBridgeForge_Plugin {
 
-	const CRON_HOOK = 'repopress_scheduled_sync';
+	const CRON_HOOK = 'repobridgeforge_scheduled_sync';
 
-	/** @var RepoPress_Plugin|null */
+	/** @var RepoBridgeForge_Plugin|null */
 	private static $instance = null;
 
-	/** @var RepoPress_Settings */
+	/** @var RepoBridgeForge_Settings */
 	public $settings;
 
-	/** @var RepoPress_Logger */
+	/** @var RepoBridgeForge_Logger */
 	public $logger;
 
 	public static function instance() {
@@ -30,8 +30,8 @@ class RepoPress_Plugin {
 	}
 
 	private function __construct() {
-		$this->logger   = new RepoPress_Logger();
-		$this->settings = new RepoPress_Settings();
+		$this->logger   = new RepoBridgeForge_Logger();
+		$this->settings = new RepoBridgeForge_Settings();
 	}
 
 	public function init() {
@@ -40,13 +40,13 @@ class RepoPress_Plugin {
 		add_action( self::CRON_HOOK, array( $this, 'run_scheduled_sync' ) );
 
 		if ( is_admin() ) {
-			$admin = new RepoPress_Admin_Page( $this->settings, $this->logger );
+			$admin = new RepoBridgeForge_Admin_Page( $this->settings, $this->logger );
 			$admin->init();
 		}
 	}
 
 	public function run_scheduled_sync() {
-		$engine = new RepoPress_Sync_Engine( $this->settings, $this->logger );
+		$engine = new RepoBridgeForge_Sync_Engine( $this->settings, $this->logger );
 		$engine->sync();
 	}
 
@@ -57,9 +57,9 @@ class RepoPress_Plugin {
 	 * @return array
 	 */
 	public function add_cron_interval( $schedules ) {
-		$schedules['repopress_15min'] = array(
+		$schedules['repobridgeforge_15min'] = array(
 			'interval' => 15 * MINUTE_IN_SECONDS,
-			'display'  => __( 'Every 15 minutes (RepoPress)', 'repopress' ),
+			'display'  => __( 'Every 15 minutes (Repo Bridge Forge)', 'repobridgeforge' ),
 		);
 		return $schedules;
 	}
@@ -75,7 +75,7 @@ class RepoPress_Plugin {
 		}
 
 		$frequency = $this->settings->get( 'frequency', 'manual' );
-		$valid     = array( 'repopress_15min', 'hourly', 'twicedaily', 'daily' );
+		$valid     = array( 'repobridgeforge_15min', 'hourly', 'twicedaily', 'daily' );
 
 		if ( in_array( $frequency, $valid, true ) ) {
 			wp_schedule_event( time() + MINUTE_IN_SECONDS, $frequency, self::CRON_HOOK );

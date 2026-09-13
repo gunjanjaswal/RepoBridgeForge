@@ -42,7 +42,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: gunjanjaswal/WP-Plugin-Version-Guard@v1
         with:
-          plugin-file: repopress.php
+          plugin-file: repobridgeforge.php
           readme: readme.txt
-          constant: REPOPRESS_VERSION
+          constant: REPOBRIDGEFORGE_VERSION
           changelog: CHANGELOG.md
