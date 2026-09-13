@@ -85,6 +85,7 @@ class RepoBridgeForge_Admin_Page {
 		}
 		$links[] = '<a href="https://ko-fi.com/gunjanjaswal" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Support on Ko-fi', 'repobridgeforge' ) . '</a>';
 		$links[] = '<a href="https://www.gunjanjaswal.me" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Author', 'repobridgeforge' ) . '</a>';
+		$links[] = '<a href="mailto:hello@gunjanjaswal.me">' . esc_html__( 'Contact developer', 'repobridgeforge' ) . '</a>';
 		return $links;
 	}
 
