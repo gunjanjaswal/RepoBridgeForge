@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner-772x250.png" alt="Repo Bridge Forge" width="772">
+  <img src=".wordpress-org/banner-772x250.png" alt="Repo Bridge Forge" width="772">
 </p>
 
 <h1 align="center">Repo Bridge Forge</h1>
