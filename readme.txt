@@ -59,7 +59,7 @@ The plugin does not collect analytics, does not phone home, and stores your toke
 
 1. Upload the `repobridgeforge` folder to `/wp-content/plugins/`, or install the plugin through the WordPress plugins screen.
 2. Activate the plugin.
-3. Go to Tools > GitHub Sync.
+3. Open the Repo Bridge Forge menu in your WordPress admin sidebar.
 4. Enter the repository owner, name, branch, and optional folder path.
 5. Paste a fine-grained personal access token with read-only Contents permission for that repository.
 6. Use Test connection to confirm access, then Sync now, or set an automatic schedule.
@@ -88,7 +88,7 @@ Source code and issues live on GitHub at https://github.com/gunjanjaswal/RepoBri
 
 == Screenshots ==
 
-1. The settings screen under Tools > GitHub Sync.
+1. The Repo Bridge Forge settings screen.
 2. The activity log after a sync.
 
 == Changelog ==
