@@ -29,7 +29,7 @@ repobridgeforge/
 │   ├── class-content-parser.php Front matter and Markdown parsing
 │   ├── class-sync-engine.php  The pull loop and change detection
 │   ├── class-logger.php       Activity log
-│   └── lib/Parsedown.php      Bundled Markdown parser (MIT)
+│   └── class-markdown.php     Built-in Markdown to HTML converter
 └── admin/
     ├── class-admin-page.php   Settings screen and handlers
     └── views/settings.php     The form and activity table
@@ -102,8 +102,8 @@ Two repository secrets are required:
 Add them under **Settings → Secrets and variables → Actions** on GitHub.
 
 The `.distignore` file keeps development-only files (this guide, workflows, git
-metadata) out of what ships to users. Runtime files, including the bundled
-Parsedown, are always included.
+metadata) out of what ships to users. Runtime files, including the built-in
+Markdown converter, are always included.
 
 ## Reporting issues
 
