@@ -5,7 +5,7 @@ Tags: github, markdown, sync, content, deployment
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -92,6 +92,9 @@ Source code and issues live on GitHub at https://github.com/gunjanjaswal/RepoBri
 2. The activity log after a sync.
 
 == Changelog ==
+
+= 0.1.2 =
+* Documentation: corrected the settings location to the top-level Repo Bridge Forge menu, and refreshed the contributor guide. No code changes.
 
 = 0.1.1 =
 * Markdown is now converted by a small built-in converter, so the plugin no longer bundles a third-party library.

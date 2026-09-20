@@ -13,7 +13,7 @@
   <a href="https://github.com/gunjanjaswal/RepoBridgeForge/actions/workflows/ci.yml"><img src="https://github.com/gunjanjaswal/RepoBridgeForge/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <img src="https://img.shields.io/badge/WordPress-5.8%2B-21759B?logo=wordpress&logoColor=white" alt="WordPress 5.8+">
   <img src="https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php&logoColor=white" alt="PHP 7.4+">
-  <img src="https://img.shields.io/badge/version-0.1.1-2EA043" alt="Version 0.1.1">
+  <img src="https://img.shields.io/badge/version-0.1.2-2EA043" alt="Version 0.1.2">
   <img src="https://img.shields.io/badge/License-GPLv2%2B-1E7B34" alt="License GPLv2 or later">
 </p>
 
