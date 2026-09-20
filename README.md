@@ -13,9 +13,30 @@
   <a href="https://github.com/gunjanjaswal/RepoBridgeForge/actions/workflows/ci.yml"><img src="https://github.com/gunjanjaswal/RepoBridgeForge/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <img src="https://img.shields.io/badge/WordPress-5.8%2B-21759B?logo=wordpress&logoColor=white" alt="WordPress 5.8+">
   <img src="https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php&logoColor=white" alt="PHP 7.4+">
+  <img src="https://img.shields.io/badge/version-0.1.1-2EA043" alt="Version 0.1.1">
   <img src="https://img.shields.io/badge/License-GPLv2%2B-1E7B34" alt="License GPLv2 or later">
-  <img src="https://img.shields.io/badge/version-0.1.1-blue" alt="Version 0.1.1">
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/dependencies-none-brightgreen" alt="No dependencies">
+  <img src="https://img.shields.io/badge/build%20step-none-brightgreen" alt="No build step">
+  <img src="https://img.shields.io/badge/direction-one--way%20(read--only)-0969DA" alt="One-way, read only">
+  <img src="https://img.shields.io/badge/PRs-welcome-8250DF" alt="PRs welcome">
   <a href="https://ko-fi.com/gunjanjaswal"><img src="https://img.shields.io/badge/Support-Ko--fi-FF5E5B?logo=kofi&logoColor=white" alt="Support on Ko-fi"></a>
+</p>
+
+---
+
+<p align="center">
+  <a href="#what-it-does">What it does</a> ·
+  <a href="#features-at-a-glance">Features</a> ·
+  <a href="#how-it-works">How it works</a> ·
+  <a href="#a-sample-file">Sample file</a> ·
+  <a href="#installation">Install</a> ·
+  <a href="#setup">Setup</a> ·
+  <a href="#configuration">Configuration</a> ·
+  <a href="#frequently-asked-questions">FAQ</a> ·
+  <a href="#roadmap">Roadmap</a>
 </p>
 
 ---
@@ -29,6 +50,21 @@ It fits three kinds of people well:
 - You like writing in Markdown and would rather not touch the WordPress editor.
 - You want your content under version control, with history and pull requests.
 - You manage docs, release notes, or a changelog in a repo and need them mirrored onto a WordPress site.
+
+## Features at a glance
+
+| | Feature | What you get |
+| :---: | --- | --- |
+| 📝 | **Markdown to posts** | Every `.md` file in your chosen folder becomes a WordPress post, converted to clean HTML |
+| 🧭 | **Front matter mapping** | YAML front matter sets the title, slug, status, type, date, categories, and tags |
+| 🔒 | **Read-only by design** | The plugin only ever reads from GitHub. Your repo is never written to or changed |
+| 🔑 | **Fine-grained tokens** | Works with a single-repo, read-only personal access token, stored encrypted at rest |
+| 🎯 | **Smart change detection** | Each file is tracked by its Git blob checksum, so unchanged files are skipped |
+| ⏱ | **Manual or scheduled** | Sync on demand, or on a WP-Cron schedule from every 15 minutes to once a day |
+| 🗂️ | **Folder scoping** | Sync the whole repo, or narrow it to a single sub-folder |
+| 🧹 | **Deletion handling** | When a file disappears, leave the post in place and log it, or move it to Trash |
+| 📋 | **Activity log** | See what synced, what was skipped, and what went wrong, right on the settings screen |
+| 🪶 | **Zero dependencies** | A small built-in Markdown converter, no Composer, no build step, no bundled libraries |
 
 ## Why one direction
 
@@ -142,6 +178,9 @@ Content is stored as HTML in the post body, which the block editor and any theme
 **Is my token safe?**
 It is stored encrypted at rest using your site's authentication salts, and it never leaves your server except in calls to the GitHub API.
 
+**Do I need Composer or a build step?**
+No. Markdown is converted by a small built-in converter in `includes/class-markdown.php`, so the plugin ships with no third-party dependencies.
+
 ## External services
 
 Repo Bridge Forge talks to the [GitHub REST API](https://docs.github.com/rest) (`https://api.github.com`) to read the repository you configure. Requests are made only after you save a repository and token, and only to fetch the repository details, its file tree, and the contents of Markdown files. Nothing is sent anywhere else, and the plugin collects no analytics.
@@ -151,11 +190,11 @@ Repo Bridge Forge talks to the [GitHub REST API](https://docs.github.com/rest) (
 
 ## Roadmap
 
-| Version | Focus |
-| --- | --- |
-| **0.1** | One-way pull, PAT auth, manual and scheduled sync, front matter mapping, change detection, activity log |
-| **0.2** | Push webhooks for instant sync; WordPress to GitHub export; image and asset handling |
-| **0.3** | Optional GitHub App and Marketplace listing; multi-repo; block-based rendering |
+| Version | Status | Focus |
+| --- | :---: | --- |
+| **0.1** | ✅ Shipped | One-way pull, PAT auth, manual and scheduled sync, front matter mapping, change detection, activity log |
+| **0.2** | 🛠️ Planned | Push webhooks for instant sync; WordPress to GitHub export; image and asset handling |
+| **0.3** | 💡 Exploring | Optional GitHub App and Marketplace listing; multi-repo; block-based rendering |
 
 ## Development
 
