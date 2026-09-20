@@ -143,7 +143,7 @@ Repo Bridge Forge uses a small built-in Markdown converter, so it has no third-p
 
 ## Setup
 
-1. Go to **Tools → Repo Bridge Forge**.
+1. Open the **Repo Bridge Forge** menu in your WordPress admin sidebar.
 2. Enter the repository owner, name, branch, and an optional folder path.
 3. Paste a fine-grained personal access token with read-only Contents access to that repository.
 4. Choose the post type, default status, and how often to sync.
