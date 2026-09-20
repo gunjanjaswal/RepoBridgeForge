@@ -17,7 +17,7 @@ First public release.
 
 - One-directional sync that pulls Markdown files from a GitHub repository and publishes them as WordPress posts.
 - YAML front matter mapping for title, slug, status, post type, categories, tags, excerpt, and date.
-- Markdown to HTML conversion via a bundled Parsedown parser, with a `wpautop` fallback.
+- Markdown to HTML conversion with a small built-in converter (no third-party libraries).
 - Per-file change detection using the Git blob checksum, so unchanged files are skipped.
 - Personal access token authentication, with the token stored encrypted at rest.
 - Manual sync plus scheduled sync through WP-Cron (every 15 minutes, hourly, twice daily, or daily).

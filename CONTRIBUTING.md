@@ -12,15 +12,8 @@ Clone into a WordPress install's plugins folder:
 git clone https://github.com/gunjanjaswal/RepoBridgeForge.git wp-content/plugins/repobridgeforge
 ```
 
-Repo Bridge Forge ships with a bundled copy of Parsedown in `includes/lib/`, so it runs
-without any build step. If you would rather manage it with Composer:
-
-```bash
-composer install
-```
-
-When `vendor/autoload.php` is present it is used first; otherwise the bundled
-file is loaded.
+Repo Bridge Forge has no third-party dependencies and no build step. Markdown is
+converted by a small built-in converter in `includes/class-markdown.php`.
 
 ## Project layout
 

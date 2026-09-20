@@ -165,8 +165,8 @@ class RepoBridgeForge_Content_Parser {
 	}
 
 	/**
-	 * Convert Markdown to HTML. Uses Parsedown when available, otherwise a
-	 * conservative fallback that keeps paragraphs and existing HTML intact.
+	 * Convert Markdown to HTML using the plugin's own converter, with a plain
+	 * paragraph fallback if it is somehow unavailable.
 	 *
 	 * @param string $markdown
 	 * @return string
@@ -174,14 +174,10 @@ class RepoBridgeForge_Content_Parser {
 	private function markdown_to_html( $markdown ) {
 		$markdown = ltrim( (string) $markdown, "\n" );
 
-		if ( class_exists( 'RepoBridgeForge_Parsedown' ) ) {
-			$parser = new RepoBridgeForge_Parsedown();
-			if ( method_exists( $parser, 'setSafeMode' ) ) {
-				$parser->setSafeMode( true );
-			}
-			$html = $parser->text( $markdown );
+		if ( class_exists( 'RepoBridgeForge_Markdown' ) ) {
+			$parser = new RepoBridgeForge_Markdown();
+			$html   = $parser->text( $markdown );
 		} else {
-			// Fallback: preserve raw HTML and paragraph breaks without a parser.
 			$html = wpautop( $markdown );
 		}
 
