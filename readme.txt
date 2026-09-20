@@ -5,7 +5,7 @@ Tags: github, markdown, sync, content, deployment
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -92,6 +92,9 @@ Source code and issues live on GitHub at https://github.com/gunjanjaswal/RepoBri
 2. The activity log after a sync.
 
 == Changelog ==
+
+= 0.1.1 =
+* Markdown is now converted by a small built-in converter, so the plugin no longer bundles a third-party library.
 
 = 0.1.0 =
 * First release: one-directional pull from GitHub, Markdown with YAML front matter, manual and scheduled sync, per-file change detection, connection test, and an activity log.

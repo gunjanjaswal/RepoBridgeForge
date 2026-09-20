@@ -103,7 +103,7 @@ Your **Markdown** body goes here, including lists, links, and code.
 git clone https://github.com/gunjanjaswal/RepoBridgeForge.git wp-content/plugins/repobridgeforge
 ```
 
-Repo Bridge Forge ships with a bundled Markdown parser, so it runs as-is. If you prefer Composer, `composer install` will use the Composer copy instead.
+Repo Bridge Forge uses a small built-in Markdown converter, so it has no third-party dependencies and runs as-is.
 
 ## Setup
 
@@ -172,7 +172,7 @@ Issues and pull requests are welcome at [github.com/gunjanjaswal/RepoBridgeForge
 
 ## License
 
-GPL-2.0-or-later. See [LICENSE](LICENSE). The bundled Markdown parser, [Parsedown](https://github.com/erusev/parsedown), is MIT licensed; its license sits alongside it in `includes/lib/`.
+GPL-2.0-or-later. See [LICENSE](LICENSE).
 
 ## Author
 
