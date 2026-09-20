@@ -3,7 +3,7 @@
  * Plugin Name:       Repo Bridge Forge
  * Plugin URI:        https://github.com/gunjanjaswal/RepoBridgeForge
  * Description:        Publish WordPress content from a GitHub repository. Markdown files with YAML front matter become posts, kept in sync from the branch you choose.
- * Version:           0.1.1
+ * Version:           0.1.2
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            Gunjan Jaswal
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'REPOBRIDGEFORGE_VERSION', '0.1.1' );
+define( 'REPOBRIDGEFORGE_VERSION', '0.1.2' );
 define( 'REPOBRIDGEFORGE_PLUGIN_FILE', __FILE__ );
 define( 'REPOBRIDGEFORGE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'REPOBRIDGEFORGE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

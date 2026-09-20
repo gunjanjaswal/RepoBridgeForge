@@ -9,6 +9,12 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 Nothing yet. Planned work is tracked on the [roadmap](README.md#roadmap).
 
+## [0.1.2] - 2026-09-20
+
+### Fixed
+
+- Corrected the documented settings location: the screen lives under the top-level **Repo Bridge Forge** admin menu, not under Tools. Updated `readme.txt`, the README, and the contributor guide. No code changes.
+
 ## [0.1.1] - 2026-09-20
 
 ### Changed
@@ -32,6 +38,7 @@ First public release.
 - Activity log on the settings screen.
 - Support and author links on the plugin's row on the Plugins page.
 
-[Unreleased]: https://github.com/gunjanjaswal/RepoBridgeForge/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/gunjanjaswal/RepoBridgeForge/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/gunjanjaswal/RepoBridgeForge/releases/tag/v0.1.2
 [0.1.1]: https://github.com/gunjanjaswal/RepoBridgeForge/releases/tag/v0.1.1
 [0.1.0]: https://github.com/gunjanjaswal/RepoBridgeForge/releases/tag/v0.1.0
