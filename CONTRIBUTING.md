@@ -84,26 +84,10 @@ The version number lives in four places and they must match on every release:
 
 5. Create a GitHub release from that tag so the source is tagged on GitHub.
 
-## Deployment
-
-Deployment to the WordPress plugin directory is manual, over SVN. Build a clean
-copy of the plugin that leaves out development-only files (this guide, git
-metadata, store assets), then commit it to the WordPress.org repository:
-
-```bash
-# check out the WordPress.org repo once
-svn co https://plugins.svn.wordpress.org/repobridgeforge svn
-
-# copy the runtime files into trunk (see .distignore for what to leave out),
-# then tag the release and commit
-cp -r <plugin files> svn/trunk/
-svn cp svn/trunk svn/tags/0.2.0
-svn ci -m "Release 0.2.0"
-```
-
-Update the icon and banner under `svn/assets/` when they change. The
-[`.distignore`](.distignore) file lists what to keep out of the build; runtime
-files, including the built-in Markdown converter, always ship.
+Publishing the release to the WordPress plugin directory is handled by the
+maintainer outside this repository. The [`.distignore`](.distignore) file lists
+the development-only files to leave out of a build; runtime files, including the
+built-in Markdown converter, always ship.
 
 ## Reporting issues
 
