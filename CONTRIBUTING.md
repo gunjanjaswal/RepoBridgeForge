@@ -82,28 +82,28 @@ The version number lives in four places and they must match on every release:
    git push origin main --tags
    ```
 
-5. Create a GitHub release from that tag. Publishing the release triggers the deploy workflow.
+5. Create a GitHub release from that tag so the source is tagged on GitHub.
 
 ## Deployment
 
-Deployment to the WordPress plugin directory is automated with GitHub Actions in
-[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). When a GitHub
-release is published, the workflow builds the plugin (respecting
-[`.distignore`](.distignore)) and commits it to the WordPress.org SVN
-repository, then attaches a zip to the release.
+Deployment to the WordPress plugin directory is manual, over SVN. Build a clean
+copy of the plugin that leaves out development-only files (this guide, git
+metadata, store assets), then commit it to the WordPress.org repository:
 
-Two repository secrets are required:
+```bash
+# check out the WordPress.org repo once
+svn co https://plugins.svn.wordpress.org/repobridgeforge svn
 
-| Secret | Value |
-| --- | --- |
-| `SVN_USERNAME` | Your WordPress.org username |
-| `SVN_PASSWORD` | Your WordPress.org password |
+# copy the runtime files into trunk (see .distignore for what to leave out),
+# then tag the release and commit
+cp -r <plugin files> svn/trunk/
+svn cp svn/trunk svn/tags/0.2.0
+svn ci -m "Release 0.2.0"
+```
 
-Add them under **Settings → Secrets and variables → Actions** on GitHub.
-
-The `.distignore` file keeps development-only files (this guide, workflows, git
-metadata) out of what ships to users. Runtime files, including the built-in
-Markdown converter, are always included.
+Update the icon and banner under `svn/assets/` when they change. The
+[`.distignore`](.distignore) file lists what to keep out of the build; runtime
+files, including the built-in Markdown converter, always ship.
 
 ## Reporting issues
 

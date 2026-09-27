@@ -1,6 +1,5 @@
 # Files and folders that should NOT ship to the WordPress.org plugin build.
-# Everything not listed here is included, so runtime code and the bundled
-# Parsedown parser are always shipped.
+# Everything not listed here is included, so the runtime code always ships.
 
 /.git
 /.github
@@ -12,9 +11,9 @@
 /README.md
 /CHANGELOG.md
 /CONTRIBUTING.md
-includes/lib/README.md
 
-# WordPress.org assets are deployed to a separate SVN path, not the plugin build
+# Store assets (icon, banner) go to a separate SVN path, not the plugin build
+/.wordpress-org
 /assets
 
 # Tooling
