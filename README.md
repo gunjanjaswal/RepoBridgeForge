@@ -216,6 +216,6 @@ GPL-2.0-or-later. See [LICENSE](LICENSE).
 
 Built by **Gunjan Jaswal**.
 
-- Website: [gunjanjaswal.me](https://www.gunjanjaswal.me)
+- Website: [gunjanjaswal.me](https://gunjanjaswal.me)
 - Email: [hello@gunjanjaswal.me](mailto:hello@gunjanjaswal.me)
 - Support the work: [ko-fi.com/gunjanjaswal](https://ko-fi.com/gunjanjaswal)

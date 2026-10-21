@@ -259,7 +259,7 @@ Your **Markdown** body here.</div>
 
 			<div class="rp-card rp-author">
 				<?php esc_html_e( 'Built by', 'repobridgeforge' ); ?>
-				<a href="https://www.gunjanjaswal.me" target="_blank" rel="noopener noreferrer">Gunjan Jaswal</a>
+				<a href="https://gunjanjaswal.me" target="_blank" rel="noopener noreferrer">Gunjan Jaswal</a>
 			</div>
 		</aside>
 	</div>
