@@ -150,6 +150,15 @@ $repobridgeforge_post_url  = esc_url( admin_url( 'admin-post.php' ) );
 						<label class="rp-radio"><input type="radio" name="delete_behavior" value="ignore" <?php checked( $repobridgeforge_config['delete_behavior'], 'ignore' ); ?> /> <?php esc_html_e( 'Leave the post as-is (log only)', 'repobridgeforge' ); ?></label>
 						<label class="rp-radio"><input type="radio" name="delete_behavior" value="trash" <?php checked( $repobridgeforge_config['delete_behavior'], 'trash' ); ?> /> <?php esc_html_e( 'Move the post to Trash', 'repobridgeforge' ); ?></label>
 					</div>
+					<div class="rp-field">
+						<label class="rp-label" for="repobridgeforge-webhook-secret"><?php esc_html_e( 'Webhook secret', 'repobridgeforge' ); ?></label>
+						<input name="webhook_secret" id="repobridgeforge-webhook-secret" type="text" value="<?php echo esc_attr( $repobridgeforge_config['webhook_secret'] ); ?>" class="regular-text" />
+						<p class="description">
+							<?php esc_html_e( 'Set a secret, then add a GitHub webhook pointing at the URL below (content type application/json) with the same secret. Every push syncs instantly, no waiting for cron.', 'repobridgeforge' ); ?>
+							<br />
+							<code><?php echo esc_html( rest_url( 'repobridgeforge/v1/webhook' ) ); ?></code>
+						</p>
+					</div>
 				</div>
 
 				<?php submit_button( __( 'Save settings', 'repobridgeforge' ) ); ?>

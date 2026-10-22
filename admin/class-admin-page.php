@@ -118,6 +118,7 @@ class RepoBridgeForge_Admin_Page {
 			'default_status'  => isset( $_POST['default_status'] ) ? sanitize_key( wp_unslash( $_POST['default_status'] ) ) : 'draft',
 			'frequency'       => isset( $_POST['frequency'] ) ? sanitize_key( wp_unslash( $_POST['frequency'] ) ) : 'manual',
 			'delete_behavior' => isset( $_POST['delete_behavior'] ) ? sanitize_key( wp_unslash( $_POST['delete_behavior'] ) ) : 'ignore',
+			'webhook_secret'  => isset( $_POST['webhook_secret'] ) ? sanitize_text_field( wp_unslash( $_POST['webhook_secret'] ) ) : '',
 		);
 		$this->settings->update( $data );
 

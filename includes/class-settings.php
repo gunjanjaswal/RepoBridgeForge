@@ -29,6 +29,7 @@ class RepoBridgeForge_Settings {
 			'default_status'  => 'draft',   // Status used when front matter omits it.
 			'frequency'       => 'manual',  // manual|repobridgeforge_15min|hourly|twicedaily|daily.
 			'delete_behavior' => 'ignore',  // ignore|trash — what to do when a file disappears.
+			'webhook_secret'  => '',        // Shared secret for the GitHub push webhook.
 		);
 	}
 

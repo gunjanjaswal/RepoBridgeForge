@@ -5,7 +5,7 @@ Tags: github, markdown, sync, content, deployment
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.1.2
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,6 +93,9 @@ Source code and issues live on GitHub at https://github.com/gunjanjaswal/RepoBri
 
 == Changelog ==
 
+= 0.2.0 =
+* New: GitHub push webhook. Set a secret in Settings and add a webhook in your repository pointing at the plugin's endpoint, and every push syncs instantly instead of waiting for the next scheduled run. The request is verified with an HMAC-SHA256 signature, and a GitHub "ping" is answered so you can confirm the hook from GitHub's UI.
+
 = 0.1.2 =
 * Documentation: corrected the settings location to the top-level Repo Bridge Forge menu, and refreshed the contributor guide. No code changes.
 
@@ -103,6 +106,9 @@ Source code and issues live on GitHub at https://github.com/gunjanjaswal/RepoBri
 * First release: one-directional pull from GitHub, Markdown with YAML front matter, manual and scheduled sync, per-file change detection, connection test, and an activity log.
 
 == Upgrade Notice ==
+
+= 0.2.0 =
+Adds a GitHub push webhook so every push syncs instantly, verified with an HMAC-SHA256 signature. Scheduled and manual sync are unchanged.
 
 = 0.1.0 =
 First release.

@@ -38,6 +38,7 @@ class RepoBridgeForge_Plugin {
 		// Translations for WordPress.org-hosted plugins are loaded automatically since WP 4.6.
 		add_filter( 'cron_schedules', array( $this, 'add_cron_interval' ) );
 		add_action( self::CRON_HOOK, array( $this, 'run_scheduled_sync' ) );
+		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
 
 		if ( is_admin() ) {
 			$admin = new RepoBridgeForge_Admin_Page( $this->settings, $this->logger );
@@ -48,6 +49,61 @@ class RepoBridgeForge_Plugin {
 	public function run_scheduled_sync() {
 		$engine = new RepoBridgeForge_Sync_Engine( $this->settings, $this->logger );
 		$engine->sync();
+	}
+
+	/**
+	 * Register the GitHub push webhook endpoint.
+	 */
+	public function register_rest_routes() {
+		register_rest_route(
+			'repobridgeforge/v1',
+			'/webhook',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'handle_webhook' ),
+				'permission_callback' => '__return_true',
+			)
+		);
+	}
+
+	/**
+	 * Handle a GitHub webhook: verify the signature, then sync on a push.
+	 *
+	 * @param WP_REST_Request $request Request.
+	 * @return WP_REST_Response
+	 */
+	public function handle_webhook( $request ) {
+		$secret = (string) $this->settings->get( 'webhook_secret', '' );
+		if ( '' === $secret ) {
+			return new WP_REST_Response( array( 'message' => 'Webhook secret not configured.' ), 403 );
+		}
+
+		$signature = (string) $request->get_header( 'x_hub_signature_256' );
+		$body      = (string) $request->get_body();
+		if ( '' === $signature ) {
+			return new WP_REST_Response( array( 'message' => 'Missing signature.' ), 401 );
+		}
+
+		$expected = 'sha256=' . hash_hmac( 'sha256', $body, $secret );
+		if ( ! hash_equals( $expected, $signature ) ) {
+			return new WP_REST_Response( array( 'message' => 'Invalid signature.' ), 401 );
+		}
+
+		$event = (string) $request->get_header( 'x_github_event' );
+		if ( 'ping' === $event ) {
+			return new WP_REST_Response( array( 'message' => 'pong' ), 200 );
+		}
+		if ( '' !== $event && 'push' !== $event ) {
+			return new WP_REST_Response( array( 'message' => 'Ignored event: ' . $event ), 200 );
+		}
+
+		$engine = new RepoBridgeForge_Sync_Engine( $this->settings, $this->logger );
+		$result = $engine->sync();
+		if ( is_wp_error( $result ) ) {
+			return new WP_REST_Response( array( 'message' => $result->get_error_message() ), 500 );
+		}
+
+		return new WP_REST_Response( array( 'message' => 'Synced.' ), 200 );
 	}
 
 	/**
