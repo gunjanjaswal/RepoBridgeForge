@@ -206,6 +206,8 @@ find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
 
 ## Changelog
 
+The full changelog lives in [`readme.txt`](readme.txt). Recent releases:
+
 ### 0.2.1
 - Tested and confirmed compatible with WordPress 7.1.4.
 
@@ -214,12 +216,6 @@ find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
 
 ### 0.1.2
 - Documentation: corrected the settings location to the top-level Repo Bridge Forge menu, and refreshed the contributor guide. No code changes.
-
-### 0.1.1
-- Markdown is now converted by a small built-in converter, so the plugin no longer bundles a third-party library.
-
-### 0.1.0
-- First release: one-directional pull from GitHub, Markdown with YAML front matter, manual and scheduled sync, per-file change detection, connection test, and an activity log.
 
 ## Contributing
 
