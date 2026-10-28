@@ -3,9 +3,9 @@ Contributors: gunjanjaswal
 Donate link: https://ko-fi.com/gunjanjaswal
 Tags: github, markdown, sync, content, deployment
 Requires at least: 5.8
-Tested up to: 7.1
+Tested up to: 7.1.4
 Requires PHP: 7.4
-Stable tag: 0.2.0
+Stable tag: 0.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -92,6 +92,9 @@ Source code and issues live on GitHub at https://github.com/gunjanjaswal/RepoBri
 2. The activity log after a sync.
 
 == Changelog ==
+
+= 0.2.1 =
+* Tested and confirmed compatible with WordPress 7.1.4.
 
 = 0.2.0 =
 * New: GitHub push webhook. Set a secret in Settings and add a webhook in your repository pointing at the plugin's endpoint, and every push syncs instantly instead of waiting for the next scheduled run. The request is verified with an HMAC-SHA256 signature, and a GitHub "ping" is answered so you can confirm the hook from GitHub's UI.
