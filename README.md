@@ -12,7 +12,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/WordPress-5.8%2B-21759B?logo=wordpress&logoColor=white" alt="WordPress 5.8+">
   <img src="https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php&logoColor=white" alt="PHP 7.4+">
-  <img src="https://img.shields.io/badge/version-0.1.2-2EA043" alt="Version 0.1.2">
+  <img src="https://img.shields.io/badge/version-0.2.1-2EA043" alt="Version 0.2.1">
   <img src="https://img.shields.io/badge/License-GPLv2%2B-1E7B34" alt="License GPLv2 or later">
 </p>
 
@@ -203,6 +203,23 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for local setup, coding standards, the ve
 # lint every PHP file
 find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
 ```
+
+## Changelog
+
+### 0.2.1
+- Tested and confirmed compatible with WordPress 7.1.4.
+
+### 0.2.0
+- New: GitHub push webhook. Set a secret in Settings and add a webhook in your repository pointing at the plugin's endpoint, and every push syncs instantly instead of waiting for the next scheduled run. The request is verified with an HMAC-SHA256 signature, and a GitHub "ping" is answered so you can confirm the hook from GitHub's UI.
+
+### 0.1.2
+- Documentation: corrected the settings location to the top-level Repo Bridge Forge menu, and refreshed the contributor guide. No code changes.
+
+### 0.1.1
+- Markdown is now converted by a small built-in converter, so the plugin no longer bundles a third-party library.
+
+### 0.1.0
+- First release: one-directional pull from GitHub, Markdown with YAML front matter, manual and scheduled sync, per-file change detection, connection test, and an activity log.
 
 ## Contributing
 
