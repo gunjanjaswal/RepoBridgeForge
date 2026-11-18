@@ -3,7 +3,7 @@ Contributors: gunjanjaswal
 Donate link: https://ko-fi.com/gunjanjaswal
 Tags: github, markdown, sync, content, deployment
 Requires at least: 5.8
-Tested up to: 7.1.4
+Tested up to: 7.1.5
 Requires PHP: 7.4
 Stable tag: 0.2.1
 License: GPLv2 or later
